@@ -108,6 +108,7 @@ workflow:
       positionAbsolute:
         x: 80
         y: 282
+      selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -143,8 +144,17 @@ workflow:
 
             - CIは介護保険料率に読み替える
 
-            '
-        selected: false
+
+            ### 計算時のルール
+
+            保険料の計算を尋ねられた時は、以下の方法で計算する
+
+            - 健康保険料 = 標準報酬月額 × 健康保険料率
+
+            - 介護保険料 = 標準報酬月額 × 介護保険料率
+
+            - 小数点以下は、0.5以上は切り上げ、0.5未満は切り捨てとする'
+        selected: true
         title: LLM
         type: llm
         variables: []
@@ -158,7 +168,7 @@ workflow:
       positionAbsolute:
         x: 683.4460950649911
         y: 282
-      selected: false
+      selected: true
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -197,7 +207,7 @@ workflow:
           max_retries: 3
           retry_enabled: true
           retry_interval: 100
-        selected: true
+        selected: false
         ssl_verify: true
         timeout:
           max_connect_timeout: 0
@@ -215,12 +225,12 @@ workflow:
       positionAbsolute:
         x: 380
         y: 282
-      selected: true
+      selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 243
     viewport:
-      x: 27.08855452931914
-      y: -19.82861285925742
+      x: -147.91144547068086
+      y: 26.17138714074258
       zoom: 0.8705505632961242
