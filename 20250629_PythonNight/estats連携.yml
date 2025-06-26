@@ -1,0 +1,251 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: estats連携
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:0.0.4@73a111bc58d4c5386811b0d1ed339f89c6e1a9a033940725f88257fff452ea70
+kind: app
+version: 0.3.0
+workflow:
+  conversation_variables: []
+  environment_variables:
+  - description: ''
+    id: 109c2936-d8de-46a9-b05e-73ad63839f7c
+    name: flags
+    selector:
+    - env
+    - flags
+    value: metaGetFlg=Y&limit=10&explanationGetFlg=N&annotationGetFlg=N&replaceSpChars=1
+    value_type: string
+  - description: ''
+    id: 24d74f8a-46ec-41ad-b2ab-4c5a2ee03fe5
+    name: stats_data_id
+    selector:
+    - env
+    - stats_data_id
+    value: 0003172942
+    value_type: string
+  - description: ''
+    id: a30678a3-7b91-4000-aaab-2034064de1ed
+    name: app_id
+    selector:
+    - env
+    - app_id
+    value: ''
+    value_type: secret
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        sourceType: llm
+        targetType: answer
+      id: llm-answer
+      source: llm
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: http-request
+      id: 1750167764949-source-1750167774105-target
+      source: '1750167764949'
+      sourceHandle: source
+      target: '1750167774105'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: llm
+      id: 1750167774105-source-llm-target
+      source: '1750167774105'
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 開始
+        type: start
+        variables:
+        - label: 自治体コード
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: area_code
+      height: 89
+      id: '1750167764949'
+      position:
+        x: 70.14784231768243
+        y: 282
+      positionAbsolute:
+        x: 70.14784231768243
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4o
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 301f363e-f118-4059-a481-af9349aefa83
+          role: system
+          text: 質問に対して、{{#1750167774105.body#}}のデータをもとに回答してください。
+        - id: e9e2652e-d5c3-40a6-bd88-741c6b26a8f5
+          role: user
+          text: '{{#sys.query#}}'
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: llm
+      position:
+        x: 680
+        y: 282
+      positionAbsolute:
+        x: 680
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#llm.text#}}'
+        desc: ''
+        selected: false
+        title: 回答
+        type: answer
+        variables: []
+      height: 103
+      id: answer
+      position:
+        x: 980
+        y: 282
+      positionAbsolute:
+        x: 980
+        y: 282
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        desc: ''
+        headers: Content-Typr:application/json
+        method: get
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP リクエスト
+        type: http-request
+        url: https://api.e-stat.go.jp/rest/3.0/app/json/getStatsData?appId={{#env.app_id#}}&lang=J&statsDataId={{#env.stats_data_id#}}&{{#env.flags#}}&cdArea={{#1750167764949.area_code#}}
+        variables: []
+      height: 193
+      id: '1750167774105'
+      position:
+        x: 380.8705505632961
+        y: 282
+      positionAbsolute:
+        x: 380.8705505632961
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: -96.29123802923436
+      y: -80.5909013915113
+      zoom: 1.1486983549970353
