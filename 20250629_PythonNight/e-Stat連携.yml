@@ -124,7 +124,7 @@ workflow:
         title: 開始
         type: start
         variables:
-        - label: 自治体コード
+        - label: 自治体コード(数字5ケタ)
           max_length: 48
           options: []
           required: true
@@ -138,7 +138,7 @@ workflow:
       positionAbsolute:
         x: 70.14784231768243
         y: 282
-      selected: true
+      selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -245,7 +245,31 @@ workflow:
       targetPosition: left
       type: custom
       width: 243
+    - data:
+        author: Dify
+        desc: ''
+        height: 124
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"e-StatのWebAPIを利用するために必要なAppIDは","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"各自で取得してください。","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"https://www.e-stat.go.jp/","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 320
+      height: 124
+      id: '1751127499110'
+      position:
+        x: 380.8705505632961
+        y: 488.3584499029847
+      positionAbsolute:
+        x: 380.8705505632961
+        y: 488.3584499029847
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 320
     viewport:
-      x: -96.29123802923436
-      y: -80.5909013915113
-      zoom: 1.1486983549970353
+      x: -65.7893545782232
+      y: -45.72466992515797
+      zoom: 0.8705505632961247
