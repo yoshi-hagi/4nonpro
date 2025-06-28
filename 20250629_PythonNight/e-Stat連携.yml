@@ -3,7 +3,7 @@ app:
   icon: 🤖
   icon_background: '#FFEAD5'
   mode: advanced-chat
-  name: estats連携
+  name: e-Stat連携
   use_icon_as_answer_icon: false
 dependencies:
 - current_identifier: null
@@ -240,7 +240,7 @@ workflow:
       positionAbsolute:
         x: 380.8705505632961
         y: 282
-      selected: false
+      selected: true
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -264,12 +264,12 @@ workflow:
       positionAbsolute:
         x: 380.8705505632961
         y: 488.3584499029847
-      selected: true
+      selected: false
       sourcePosition: right
       targetPosition: left
       type: custom-note
       width: 320
     viewport:
-      x: -65.7893545782232
-      y: -45.72466992515797
-      zoom: 0.8705505632961247
+      x: 11.028575142789805
+      y: -68.01729355736788
+      zoom: 1.0000000000000007
